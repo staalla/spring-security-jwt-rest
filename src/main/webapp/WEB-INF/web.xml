@@ -1,0 +1,42 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+<!--  add when needed
+<context-param>
+<param-name>contextConfigLocation</param-name>
+<param-value>/WEB-INF/app-context.xml</param-value>
+</context-param>
+-->
+
+<display-name>RESTWithSpringMVC</display-name>
+<servlet>
+<servlet-name>mvc-dispatcher</servlet-name>
+<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+<!-- Each dispatcher can have its own context -->
+<init-param>
+<param-name>contextConfigLocation</param-name>
+<param-value>classpath*:conf/spring/*.xml</param-value>
+</init-param>
+<load-on-startup></load-on-startup>
+</servlet>
+<servlet-mapping>
+<servlet-name>mvc-dispatcher</servlet-name>
+<url-pattern>/api/*</url-pattern>
+</servlet-mapping>
+
+
+<filter>
+	<filter-name>springSecurityFilterChain</filter-name>
+	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>springSecurityFilterChain</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+
+
+</web-app>
